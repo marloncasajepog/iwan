@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        section {
+            padding: 20px;
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        input[type="date"],
+        select,
+        input[type="submit"] {
+            width: calc(100% - 12px);
+            padding: 8px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <h2>Create an Account</h2>
+        <?php
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // Retrieve form data
+            $first_name = $_POST["first_name"];
+            $last_name = $_POST["last_name"];
+            $mobile_email = $_POST["mobile_email"];
+            $password = $_POST["password"];
+            $birthday = $_POST["birthday"];
+            $gender = $_POST["gender"];
+
+            // Process the data (you can insert into database or perform any other operations here)
+            // For demonstration purpose, let's just display the data
+            echo "<p>Account created successfully!</p>";
+            echo "<p>First Name: $first_name</p>";
+            echo "<p>Last Name: $last_name</p>";
+            echo "<p>Mobile Number or Email: $mobile_email</p>";
+            // You can format the birthday as per your requirement
+            echo "<p>Birthday: $birthday</p>";
+            echo "<p>Gender: $gender</p>";
+        }
+        ?>
+        <form id="createAccountForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+            <label for="first_name">First Name:</label>
+            <input type="text" id="first_name" name="first_name" required>
+            
+            <label for="last_name">Last Name:</label>
+            <input type="text" id="last_name" name="last_name" required>
+            
+            <label for="mobile_email">Mobile Number or Email:</label>
+            <input type="text" id="mobile_email" name="mobile_email" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            
+            <label for="birthday">Birthday:</label>
+            <input type="date" id="birthday" name="birthday" required>
+            
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="">Select</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+            
+            <input type="submit" value="Create Account">
+        </form>
+    </section>
+</body>
+</html>
